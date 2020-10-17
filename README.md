@@ -1,4 +1,4 @@
-__________________________________________________
+_________________________________________________
 **ENTREVOISINS version 1.2**, 
 Find help in your neighbourhood, within our app
 __________________________________________________
@@ -17,8 +17,8 @@ Pre-requisite : Android Studio 3.x (Java)
 ---**Getting Started**---
 
 This project  uses the Gradle build system. To build this project, you can either :
-- download the code on your hardware, open your IDE, open the downloaded directory, which will launch a gradle sync ;
-- or use "Import Project" , from Android Studio Version Control System, pulling the branch « final » of our project :
+- download the code on your hardware, open your IDE, open the downloaded directory (it will launch a gradle sync) ;
+- or use "Import Project" , from Android Studio Version Control System, and pull the master branch of our project :
 
 ---**Credits**---
 
