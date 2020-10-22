@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.openclassrooms.entrevoisins.ui.profille.ProfileActivity;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.ui.profile.ProfileActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -61,14 +61,15 @@ public class FavNeighbourAdapter extends RecyclerView.Adapter<FavNeighbourAdapte
         holder.mNeighbourName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context=v.getContext();
+                Context context = v.getContext();
                 Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("neighbour",mFavNeighbours.get(position) );
+                intent.putExtra("neighbour", mFavNeighbours.get(position));
                 context.startActivity(intent);
                 notifyDataSetChanged();
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return mFavNeighbours.size();

@@ -50,14 +50,20 @@ public class NeighbourServiceTest {
         assertEquals(true, neighbourToAddToFavourite.getIsFavourite());
     }
 
-    //todo : understanding wy this tests fails
     @Test
     public void getFavouriteNeighboursWithSuccess() {
-        Neighbour neighbourToAddToFavourite = service.getNeighbours().get(0);
-        service.addToFavouriteNeighbours(neighbourToAddToFavourite);
+        Neighbour favouriteNeighbour = service.getNeighbours().get(0);
+        service.addToFavouriteNeighbours(favouriteNeighbour);
+        assertEquals(1, service.getFavouriteNeighbours().size());
+    }
 
-        List<Neighbour> FavouriteNeighbours = service.getFavouriteNeighbours();
-        assertEquals(1, FavouriteNeighbours.size());
+    @Test
+    public void removeFavouriteNeighbourWithSuccess() {
+        Neighbour favouriteNeighbour = service.getNeighbours().get(0);
+        service.addToFavouriteNeighbours(favouriteNeighbour);
+
+        service.removeFromFavouriteNeighbours(favouriteNeighbour);
+        assertEquals(false, favouriteNeighbour.getIsFavourite());
     }
 
     @Test

@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.openclassrooms.entrevoisins.ui.profille.ProfileActivity;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.ui.profile.ProfileActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -45,6 +45,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mNeighbourName.setText(neighbour.getName());
         Glide.with(holder.mNeighbourAvatar.getContext())
                 .load(neighbour.getAvatarUrl())
+                .timeout(60000)
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
@@ -58,9 +59,9 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mNeighbourName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context=v.getContext();
+                Context context = v.getContext();
                 Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("neighbour",mNeighbours.get(position) );
+                intent.putExtra("neighbour", mNeighbours.get(position));
                 context.startActivity(intent);
             }
         });
