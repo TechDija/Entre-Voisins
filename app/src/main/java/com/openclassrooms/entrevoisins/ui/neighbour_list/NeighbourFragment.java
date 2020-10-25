@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -15,6 +16,8 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.ui.profile.ProfileActivity;
+import com.openclassrooms.entrevoisins.utils.ItemClickSupport;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,6 +55,7 @@ public class NeighbourFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        this.configureOnClickRecyclerView();
         return view;
     }
 
@@ -61,6 +65,24 @@ public class NeighbourFragment extends Fragment {
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+    }
+
+    /**
+     * configure onCLick recyclerView
+     */
+    private void configureOnClickRecyclerView(){
+        ItemClickSupport.addTo(mRecyclerView)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        Neighbour neighbour = mNeighbours.get(position);
+                        Context context = v.getContext();
+                        Intent intent = new Intent(context, ProfileActivity.class);
+                        intent.putExtra("neighbour", neighbour);
+                        context.startActivity(intent);
+
+                    }
+                });
     }
 
     @Override
@@ -90,4 +112,6 @@ public class NeighbourFragment extends Fragment {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
+
+
 }

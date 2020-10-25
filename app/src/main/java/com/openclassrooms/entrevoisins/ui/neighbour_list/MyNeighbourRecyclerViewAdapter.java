@@ -1,7 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +13,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.ui.profile.ProfileActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -56,6 +53,9 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
 
+
+
+        /**
         holder.mNeighbourName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +65,9 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 context.startActivity(intent);
             }
         });
+         */
     }
+
 
     @Override
     public int getItemCount() {
@@ -85,4 +87,5 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             ButterKnife.bind(this, view);
         }
     }
+
 }

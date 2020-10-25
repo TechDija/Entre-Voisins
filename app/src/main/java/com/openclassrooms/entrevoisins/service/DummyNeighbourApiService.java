@@ -48,10 +48,6 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         neighbours.get(neighbours.indexOf(neighbour)).setIsFavourite(false);
     }
 
-    public boolean getFavourite(Neighbour neighbour) {
-       return neighbours.get(neighbours.indexOf(neighbour)).getIsFavourite();
-    }
-
     @Override
     public List<Neighbour> getFavouriteNeighbours() {
         List<Neighbour> favouriteNeighbours = new ArrayList<>();

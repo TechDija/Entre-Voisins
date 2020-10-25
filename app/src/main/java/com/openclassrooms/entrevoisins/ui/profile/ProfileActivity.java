@@ -83,19 +83,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void setFabClick(Neighbour neighbour) {
 
-        if (!mApiService.getFavourite(neighbour)) {
+        if (!neighbour.getIsFavourite()) {
             mApiService.addToFavouriteNeighbours(neighbour);
             mFavourite.setImageResource(R.drawable.ic_baseline_star_24);
-        } else if (mApiService.getFavourite(neighbour)) {
+        } else if (neighbour.getIsFavourite()) {
             mApiService.removeFromFavouriteNeighbours(neighbour);
             mFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
         }
     }
 
     public void setFabImage(Neighbour neighbour) {
-        if (!mApiService.getFavourite(neighbour)) {
+        if (!neighbour.getIsFavourite()) {
             mFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
-        } else if (mApiService.getFavourite(neighbour)) {
+        } else if (neighbour.getIsFavourite()) {
             mFavourite.setImageResource(R.drawable.ic_baseline_star_24);
         }
     }
