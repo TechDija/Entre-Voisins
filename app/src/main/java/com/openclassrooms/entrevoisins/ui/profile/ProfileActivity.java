@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 public class ProfileActivity extends AppCompatActivity {
 
     private NeighbourApiService mApiService;
-
+ ////////// UI COMPONENTS ///////////
     @BindView(R.id.imgUser)
     ImageView mAvatar;
     @BindView(R.id.title_profile)
@@ -53,6 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mApiService = DI.getNeighbourApiService();
 
+///////// RECOVERING DATA /////////////
         Intent intent = getIntent();
         Neighbour neighbour = intent.getParcelableExtra("neighbour");
 
@@ -73,12 +74,21 @@ public class ProfileActivity extends AppCompatActivity {
         mAboutMe.setText(aboutMe);
         setFabImage(neighbour);
 
+////////// INTERACTION HANDLING/////////////////
         mFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setFabClick(neighbour);
             }
         });
+    }
+
+    public void setFabImage(Neighbour neighbour) {
+        if (!neighbour.getIsFavourite()) {
+            mFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
+        } else if (neighbour.getIsFavourite()) {
+            mFavourite.setImageResource(R.drawable.ic_baseline_star_24);
+        }
     }
 
     public void setFabClick(Neighbour neighbour) {
@@ -89,14 +99,6 @@ public class ProfileActivity extends AppCompatActivity {
         } else if (neighbour.getIsFavourite()) {
             mApiService.removeFromFavouriteNeighbours(neighbour);
             mFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
-        }
-    }
-
-    public void setFabImage(Neighbour neighbour) {
-        if (!neighbour.getIsFavourite()) {
-            mFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
-        } else if (neighbour.getIsFavourite()) {
-            mFavourite.setImageResource(R.drawable.ic_baseline_star_24);
         }
     }
 

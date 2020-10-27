@@ -54,17 +54,6 @@ public class FavNeighbourAdapter extends RecyclerView.Adapter<FavNeighbourAdapte
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
-
-      /**  holder.mNeighbourName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("neighbour", mFavNeighbours.get(position));
-                context.startActivity(intent);
-                notifyDataSetChanged();
-            }
-        });*/
     }
 
     @Override

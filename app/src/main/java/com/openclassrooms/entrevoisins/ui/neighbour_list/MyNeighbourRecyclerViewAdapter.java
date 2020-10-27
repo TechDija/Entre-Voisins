@@ -52,20 +52,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
-
-
-
-        /**
-        holder.mNeighbourName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("neighbour", mNeighbours.get(position));
-                context.startActivity(intent);
-            }
-        });
-         */
     }
 
 

@@ -40,8 +40,6 @@ public class FavNeighbourFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getNeighbourApiService();
-
-
     }
 
     @Override
@@ -58,7 +56,7 @@ public class FavNeighbourFragment extends Fragment {
     private void initList() {
         mFavNeighbours = mApiService.getFavouriteNeighbours();
         mRecyclerView.setAdapter(new com.openclassrooms.entrevoisins.ui.favneighbour_list.FavNeighbourAdapter(mFavNeighbours));
-        if (mFavNeighbours!=null) {
+        if (mFavNeighbours != null) {
             configureOnClickRecyclerView();
         }
     }
@@ -66,7 +64,7 @@ public class FavNeighbourFragment extends Fragment {
     /**
      * configure onCLick recyclerView
      */
-    private void configureOnClickRecyclerView(){
+    private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(mRecyclerView)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override

@@ -25,10 +25,10 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -61,7 +61,7 @@ public class NeighboursListTest {
     }
 
     @Test
-    public void record2() {
+    public void myFavouriteNeighbourList_displays_onlyFavouriteNeighbours() {
         ViewInteraction appCompatTextView = onView(
                 allOf(withId(R.id.item_list_name), withText("Caroline"),
                         childAtPosition(
@@ -145,28 +145,21 @@ public class NeighboursListTest {
     }
 
     @Test
-    public void MyNeighbourList_onClick_displaysDetailActivityWithName() {
-        onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItem(
-                        hasDescendant(withText("Dan")), click()));
 
-        onView(allOf(withText("Dan")))
-                .check(matches(isCompletelyDisplayed()));
+    public void MyNeighbourList_onClick_displaysDetailActivityWithName() {
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.list_neighbours),
+                        withParent(withId(R.id.container))));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.title_profile), withText("Caroline"),
+                        withParent(allOf(withId(R.id.main_content),
+                                withParent(withId(android.R.id.content)))),
+                        isDisplayed()));
+        textView.check(matches(isDisplayed()));
     }
 
-    /**
-     * @Test public void MyFavouriteNeighboursList_displaysOnlyFavouriteNeighbours2() {w<
-     * onView(withId(R.id.list_neighbours))
-     * .perform(RecyclerViewActions.actionOnItem(
-     * hasDescendant(withText("Caroline")), click()));
-     * onView(withId(R.id.favFab))
-     * .perform(click());
-     * pressBack();
-     * swipeLeft();
-     * onView(allOf(withId(R.id.list_favourite_neighbours)))
-     * .check(matches(withText("Caroline")));
-     * }
-     */
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
